@@ -4,12 +4,12 @@
     <div class="hero-banner">
       <div class="container">
         <div class="hero-content">
-          <h1>Welcome to ABC Shop</h1>
+          <h1>Welcome to ABC Shop <span class="heart-icon">❤️</span></h1>
           <p>Discover amazing products at great prices</p>
-          <router-link to="/products" class="shop-now-btn">Shop Now</router-link>
+          <router-link to="/products" class="shop-now-btn">Shop Now <span class="emoji">🛍️</span></router-link>
         </div>
         <div class="hero-image">
-          <img src="https://ext.same-assets.com/1656695661/479450343.jpeg" alt="Featured Products" />
+          <img src="https://cdn.pixabay.com/photo/2017/12/12/21/17/doll-figures-3015495_1280.jpg" alt="Featured Products" />
         </div>
       </div>
     </div>
@@ -92,10 +92,15 @@ export default {
   methods: {
     getCategoryImage(slug) {
       const images = {
-        'Bedding': 'https://m.media-amazon.com/images/I/811VZKvFwZL._AC_UL640_FMwebp_QL65_.jpg',
-        'Bath': 'https://m.media-amazon.com/images/I/61ML-XytWhL._AC_UL640_FMwebp_QL65_.jpg'
+        MenFashion: 'https://ext.same-assets.com/1141641775/1740329215.jpeg',
+        MenAccessories: 'https://ext.same-assets.com/2797696504/2349423998.jpeg',
+        MobilePhones: 'https://ext.same-assets.com/1465839245/354157306.jpeg',
+        WomenFashion: 'https://m.media-amazon.com/images/I/81bjg36TLqL._AC_UL640_FMwebp_QL65_.jpg',
+        Grocery: 'https://ext.same-assets.com/624373019/2688352450.jpeg',
+        HealthBeauty: 'https://ext.same-assets.com/624373019/2787080317.jpeg',
+        LaundryHousehold: 'https://ext.same-assets.com/624373019/167566417.png'
       }
-      return images[slug] || 'https://m.media-amazon.com/images/I/811VZKvFwZL._AC_UL640_FMwebp_QL65_.jpg'
+      return images[slug] || 'https://ext.same-assets.com/624373019/167566417.png'
     }
   }
 }
@@ -108,9 +113,10 @@ export default {
 
 /* Hero Banner */
 .hero-banner {
-  background-color: #f0f5ff;
+  background-color: #fff5f5;
   padding: 64px 0;
   margin-bottom: 48px;
+  border-bottom: 3px dotted #fecaca;
 }
 
 .hero-banner .container {
@@ -132,6 +138,21 @@ export default {
   color: #1e293b;
   margin-bottom: 16px;
   line-height: 1.2;
+  position: relative;
+}
+
+.heart-icon {
+  color: #ef4444;
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+  font-size: 36px;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
 }
 
 .hero-content p {
@@ -142,17 +163,52 @@ export default {
 
 .shop-now-btn {
   display: inline-block;
-  background-color: #3b82f6;
+  background-color: #ef4444;
   color: white;
   font-weight: 600;
-  padding: 14px 28px;
-  border-radius: 8px;
+  padding: 14px 30px;
+  border-radius: 30px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.emoji {
+  margin-left: 5px;
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
 .shop-now-btn:hover {
-  background-color: #2563eb;
+  background-color: #dc2626;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+.shop-now-btn:hover .emoji {
+  transform: rotate(15deg);
+}
+
+.shop-now-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.shop-now-btn:hover::after {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .hero-image {
@@ -162,8 +218,15 @@ export default {
 
 .hero-image img {
   max-width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.2);
+  border: 3px solid #fecaca;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.hero-image:hover img {
+  transform: scale(1.03) rotate(1deg);
+  box-shadow: 0 15px 30px rgba(239, 68, 68, 0.3);
 }
 
 /* Categories Section */
@@ -172,11 +235,30 @@ export default {
 }
 
 .section-title {
-  font-size: 32px;
-  font-weight: 600;
-  color: #1e293b;
+  font-size: 36px;
+  font-weight: 700;
+  color: #991b1b;
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.section-title::before,
+.section-title::after {
+  content: '✨';
+  display: inline-block;
+  margin: 0 15px;
+  color: #ef4444;
+  animation: spin 3s infinite linear;
+  font-size: 24px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .categories-grid {
@@ -188,12 +270,27 @@ export default {
 }
 
 .category-card {
-  background-color: #f8fafc;
-  border-radius: 12px;
+  background-color: #fff5f5;
+  border-radius: 20px;
   padding: 24px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  border: 2px dashed #fecaca;
+  position: relative;
+}
+
+.category-card::before {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  font-size: 20px;
+  animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.8); }
 }
 
 .category-card:hover {
@@ -212,7 +309,20 @@ export default {
   margin: 0 auto 16px;
   overflow: hidden;
   border-radius: 50%;
-  border: 4px solid #e0e7ff;
+  border: 4px solid #fecaca;
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.2);
+  position: relative;
+}
+
+.category-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .category-icon img {
@@ -250,9 +360,11 @@ export default {
 
 /* Features Section */
 .features-section {
-  background-color: #f8fafc;
+  background-color: #fff5f5;
   padding: 48px 0;
   margin-top: 48px;
+  border-top: 3px dotted #fecaca;
+  border-bottom: 3px dotted #fecaca;
 }
 
 .features-section .container {
@@ -266,18 +378,49 @@ export default {
 .feature {
   text-align: center;
   padding: 24px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.1);
+  border: 2px solid #fecaca;
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2);
 }
 
 .feature-icon {
   font-size: 48px;
   margin-bottom: 16px;
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .feature h3 {
   font-size: 20px;
-  font-weight: 600;
-  color: #1e293b;
+  font-weight: 700;
+  color: #991b1b;
   margin-bottom: 8px;
+  position: relative;
+  display: inline-block;
+}
+
+.feature h3::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background-color: #fecaca;
+  border-radius: 3px;
 }
 
 .feature p {

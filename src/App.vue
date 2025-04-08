@@ -5,12 +5,12 @@
         <div class="container">
           <div class="logo">
             <router-link to="/">
-              <img src="" alt="abcshop" />
+              <img src="" alt="gogoshop" />
             </router-link>
           </div>
           <div class="header-actions">
             <div class="account">
-              <span v-if="username">Welcome, {{ username }}!</span>
+              <router-link v-if="username" to="/account">Welcome, {{ username }}!</router-link>
               <router-link v-else to="/account">My Account</router-link>
             </div>
             <div class="cart">
@@ -51,7 +51,7 @@
           <div class="footer-column">
             <h3>email</h3>
             <ul>
-              <li><a href="#">abcshop@zontec.club</a></li>
+              <li><a href="#">gogoshop@zontec.club</a></li>
             </ul>
           </div>
           <div class="footer-column">
@@ -99,8 +99,10 @@ export default {
   padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
   color: #2d3436;
   background-color: #ffffff;
@@ -124,8 +126,9 @@ ul {
 
 /* Header Styles */
 header {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #edf2f7;
+  background-color: #fff5f5;
+  border-bottom: 1px solid #fecaca;
+  box-shadow: 0 4px 12px rgba(254, 202, 202, 0.2);
 }
 
 .header-top {
@@ -140,7 +143,7 @@ header {
 }
 
 .logo img {
-  height: 45px;
+  height: 50px;
 }
 
 .header-actions {
@@ -150,16 +153,21 @@ header {
 }
 
 .account a {
-  font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background-color: #f1f5f9;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 20px;
+  background-color: #fff5f5;
   color: #475569;
+  box-shadow: 0 3px 6px rgba(254, 202, 202, 0.3);
+  border: 2px solid #fecaca;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .account a:hover {
-  background-color: #e2e8f0;
+  background-color: #fef2f2;
   color: #1e293b;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(254, 202, 202, 0.4);
 }
 
 .cart-icon {
@@ -169,32 +177,48 @@ header {
 }
 
 .cart-icon img {
-  height: 24px;
+  height: 28px;
   filter: brightness(0.2);
+  transition: transform 0.3s ease;
+}
+
+.cart-icon:hover img {
+  transform: scale(1.1);
 }
 
 .cart-count {
   position: absolute;
-  top: -6px;
-  right: -6px;
-  background-color: #3b82f6;
+  top: -8px;
+  right: -8px;
+  background-color: #ef4444;
   color: white;
   border-radius: 20px;
-  min-width: 20px;
-  height: 20px;
+  min-width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 0 6px;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
 }
 
 /* Navigation Styles */
 .main-nav {
   background-color: #ffffff;
-  border-bottom: 1px solid #edf2f7;
-  padding: 12px 0;
+  border-bottom: 1px solid #fecaca;
+  padding: 14px 0;
 }
 
 .nav-items {
@@ -204,13 +228,14 @@ header {
 
 .nav-items a {
   color: #64748b;
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
-  padding: 6px 0;
+  padding: 8px 0;
+  font-size: 16px;
 }
 
 .nav-items a:hover {
-  color: #3b82f6;
+  color: #ef4444;
 }
 
 .nav-items a::after {
@@ -219,9 +244,10 @@ header {
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 2px;
-  background-color: #3b82f6;
+  height: 3px;
+  background-color: #ef4444;
   transition: width 0.3s ease;
+  border-radius: 3px;
 }
 
 .nav-items a:hover::after {
@@ -237,9 +263,10 @@ main {
 
 /* Footer Styles */
 footer {
-  background-color: #f8fafc;
+  background-color: #fff5f5;
   color: #475569;
   padding: 60px 0 30px;
+  border-top: 3px dotted #fecaca;
 }
 
 .footer-columns {
@@ -250,26 +277,37 @@ footer {
 }
 
 .footer-column h3 {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 20px;
-  color: #1e293b;
+  color: #991b1b;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-column h3::after {
+  content: '♥';
+  font-size: 14px;
+  margin-left: 8px;
+  color: #ef4444;
 }
 
 .footer-column ul li {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .footer-column ul li a {
   color: #64748b;
-  font-size: 15px;
-  transition: color 0.2s ease;
+  font-size: 16px;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
 }
 
 .footer-column ul li a:hover {
-  color: #3b82f6;
+  color: #ef4444;
+  transform: translateX(5px);
 }
 
 .payment-icons {
@@ -279,21 +317,44 @@ footer {
 }
 
 .payment-icons img {
-  height: 36px;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
+  height: 40px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .payment-icons img:hover {
   opacity: 1;
+  transform: translateY(-5px);
 }
 
 .copyright {
   text-align: center;
   padding-top: 30px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #fecaca;
   color: #94a3b8;
-  font-size: 14px;
+  font-size: 15px;
+}
+
+.copyright p::before,
+.copyright p::after {
+  content: '❤️';
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 12px;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
 }
 
 @media (max-width: 768px) {

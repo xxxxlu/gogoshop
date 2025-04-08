@@ -2,7 +2,7 @@
   <div class="checkout-page">
     <div class="container">
       <div class="page-header">
-        <h1>Checkout</h1>
+        <h1>Checkout <span class="heart-icon">❤️</span></h1>
         <div class="breadcrumbs">
           <router-link to="/">Home</router-link> /
           <router-link to="/cart">Shopping Cart</router-link> /
@@ -106,7 +106,7 @@
 
             <div class="form-actions">
               <router-link to="/cart" class="back-to-cart">Back to Cart</router-link>
-              <button type="submit" class="place-order-btn">Place Order</button>
+              <button type="submit" class="place-order-btn">Place Order ✨</button>
             </div>
           </form>
         </div>
@@ -153,9 +153,9 @@
 
       <div class="empty-checkout" v-else>
         <div class="empty-checkout-content">
-          <h2>Your cart is empty</h2>
+          <h2>Your cart is empty <span class="sad-icon">😢</span></h2>
           <p>You need to add products to your cart before checkout.</p>
-          <router-link to="/products" class="continue-shopping-btn">Continue Shopping</router-link>
+          <router-link to="/products" class="continue-shopping-btn">Continue Shopping ✨</router-link>
         </div>
       </div>
     </div>
@@ -226,6 +226,7 @@ export default {
 <style scoped>
 .checkout-page {
   margin-bottom: 40px;
+  background-color: #fff5f5;
 }
 
 .page-header {
@@ -235,6 +236,34 @@ export default {
 .page-header h1 {
   font-size: 28px;
   margin-bottom: 10px;
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.heart-icon {
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.sad-icon {
+  display: inline-block;
+  animation: wobble 2s infinite;
+}
+
+@keyframes wobble {
+  0% { transform: translateX(0); }
+  15% { transform: translateX(-5px) rotate(-5deg); }
+  30% { transform: translateX(5px) rotate(5deg); }
+  45% { transform: translateX(-5px) rotate(-3deg); }
+  60% { transform: translateX(5px) rotate(3deg); }
+  75% { transform: translateX(-5px) rotate(-1deg); }
+  100% { transform: translateX(0); }
 }
 
 .breadcrumbs {
@@ -243,8 +272,14 @@ export default {
 }
 
 .breadcrumbs a {
-  color: #333;
+  color: #ef4444;
   text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.breadcrumbs a:hover {
+  color: #991b1b;
+  text-decoration: underline;
 }
 
 .checkout-content {
@@ -255,16 +290,31 @@ export default {
 
 .customer-details, .order-summary {
   background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.1);
   padding: 25px;
+  border: 1px solid #fecaca;
+  transition: all 0.3s ease;
+}
+
+.customer-details:hover, .order-summary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(220, 38, 38, 0.15);
 }
 
 .customer-details h2, .order-summary h2 {
   font-size: 20px;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 2px solid #fecaca;
+  color: #dc2626;
+  position: relative;
+}
+
+.customer-details h2::after, .order-summary h2::after {
+  content: '✨';
+  position: absolute;
+  right: 0;
 }
 
 .form-group {
@@ -279,10 +329,18 @@ export default {
 
 .form-group input, .form-group textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 12px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
   font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
 }
 
 .form-group textarea {
@@ -312,24 +370,40 @@ export default {
 }
 
 .back-to-cart {
-  color: #333;
+  color: #dc2626;
   text-decoration: underline;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 30px;
+}
+
+.back-to-cart:hover {
+  background-color: #fecaca;
+  text-decoration: none;
 }
 
 .place-order-btn {
   padding: 12px 25px;
-  background-color: #3b82f6;
+  background-color: #ef4444;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(220, 38, 38, 0.2);
 }
 
 .place-order-btn:hover {
-  background-color: #1150b4;
+  background-color: #dc2626;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 10px rgba(220, 38, 38, 0.3);
+}
+
+.place-order-btn:active {
+  transform: translateY(1px);
 }
 
 .summary-items {
@@ -342,7 +416,15 @@ export default {
   display: flex;
   margin-bottom: 15px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #fecaca;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.summary-item:hover {
+  background-color: #fff5f5;
+  transform: translateX(5px);
 }
 
 .summary-item:last-child {
@@ -397,22 +479,25 @@ export default {
 .summary-row.total {
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 1px solid #eee;
+  border-top: 2px dashed #fecaca;
   font-size: 18px;
   font-weight: bold;
+  color: #dc2626;
 }
 
 .empty-checkout {
   background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.1);
   padding: 40px 20px;
   text-align: center;
+  border: 1px solid #fecaca;
 }
 
 .empty-checkout h2 {
   font-size: 24px;
   margin-bottom: 10px;
+  color: #dc2626;
 }
 
 .empty-checkout p {
@@ -423,16 +508,19 @@ export default {
 .continue-shopping-btn {
   display: inline-block;
   padding: 12px 30px;
-  background-color: #3b82f6;
+  background-color: #ef4444;
   color: white;
-  border-radius: 5px;
+  border-radius: 30px;
   font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(220, 38, 38, 0.2);
 }
 
 .continue-shopping-btn:hover {
-  background-color: #c0392b;
+  background-color: #dc2626;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 10px rgba(220, 38, 38, 0.3);
 }
 
 @media (max-width: 992px) {

@@ -2,7 +2,7 @@
   <div class="contact-page">
     <div class="container">
       <div class="page-header">
-        <h1>Contact Us</h1>
+        <h1>Contact Us <span class="heart-icon">❤️</span></h1>
         <div class="breadcrumbs">
           <router-link to="/">Home</router-link> /
           <span>Contact Us</span>
@@ -11,12 +11,12 @@
 
       <div class="contact-content">
         <div class="contact-info">
-          <h2>Get in Touch</h2>
+          <h2>Get in Touch <span class="emoji">✨</span></h2>
           <p>We're here to help and answer any question you might have. We look forward to hearing from you.</p>
           <div class="info-item">
             <div class="info">
               <h3>Email</h3>
-              <p>abcdshop@aontec.club</p>
+              <p>gogoshop@zontec.club</p>
               <p>We'll respond as soon as possible</p>
             </div>
           </div>
@@ -24,13 +24,12 @@
           <div class="info-item">
             <div class="info">
               <h3>Address</h3>
-              <p>Symbios.pk Headquarters</p>
               <p>Karachi, Pakistan</p>
             </div>
           </div>
 
           <div class="social-media">
-            <h3>Follow Us</h3>
+            <h3>Follow Us <span class="emoji">🌟</span></h3>
             <div class="social-icons">
               <a href="#" class="social-icon">
                 <img src="https://ext.same-assets.com/3844190759/4083373414.png" alt="Facebook" />
@@ -46,7 +45,7 @@
         </div>
 
         <div class="contact-form">
-          <h2>Send Us a Message</h2>
+          <h2>Send Us a Message <span class="emoji">📝</span></h2>
           <form @submit.prevent="submitForm">
             <div class="form-group">
               <label for="name">Full Name *</label>
@@ -73,7 +72,7 @@
               <textarea id="message" v-model="form.message" rows="5" required></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">Send Message</button>
+            <button type="submit" class="submit-btn">Send Message ✨</button>
           </form>
         </div>
       </div>
@@ -127,7 +126,7 @@ export default {
 .page-header h1 {
   font-size: 36px;
   font-weight: 600;
-  color: #1e293b;
+  color: #dc2626;
   margin-bottom: 16px;
 }
 
@@ -148,7 +147,18 @@ export default {
 }
 
 .breadcrumbs a:hover {
-  color: #3b82f6;
+  color: #ef4444;
+}
+
+.heart-icon {
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .contact-content {
@@ -162,17 +172,17 @@ export default {
 .contact-info, .contact-form {
   background-color: #ffffff;
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #fecaca;
   padding: 32px;
 }
 
 .contact-info h2, .contact-form h2 {
   font-size: 24px;
   font-weight: 600;
-  color: #1e293b;
+  color: #dc2626;
   margin-bottom: 24px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #fecaca;
 }
 
 .contact-info > p {
@@ -186,13 +196,14 @@ export default {
   display: flex;
   margin-bottom: 28px;
   padding: 20px;
-  background-color: #f8fafc;
+  background-color: #fff5f5;
   border-radius: 12px;
   transition: transform 0.2s ease;
 }
 
 .info-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.15);
 }
 
 .info {
@@ -202,7 +213,7 @@ export default {
 .info h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #1e293b;
+  color: #dc2626;
   margin-bottom: 8px;
 }
 
@@ -219,7 +230,7 @@ export default {
 .social-media h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #1e293b;
+  color: #dc2626;
   margin-bottom: 20px;
 }
 
@@ -231,18 +242,19 @@ export default {
 .social-icon {
   width: 44px;
   height: 44px;
-  background-color: #f8fafc;
+  background-color: #fff5f5;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #fecaca;
 }
 
 .social-icon:hover {
   background-color: #3b82f6;
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.15);
 }
 
 .social-icon:hover img {
@@ -263,26 +275,27 @@ export default {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
-  color: #1e293b;
+  color: #dc2626;
   font-size: 15px;
 }
 
 .form-group input, .form-group textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #fecaca;
   border-radius: 8px;
   font-size: 15px;
-  color: #1e293b;
-  background-color: #f8fafc;
+  color: #dc2626;
+  background-color: #fff5f5;
   transition: all 0.2s ease;
 }
 
 .form-group input:focus, .form-group textarea:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #ef4444;
   background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  transform: translateY(-2px);
 }
 
 .form-group textarea {
@@ -291,21 +304,46 @@ export default {
 }
 
 .submit-btn {
-  background-color: #3b82f6;
+  background-color: #ef4444;
   color: white;
   border: none;
   padding: 14px 28px;
-  border-radius: 8px;
+  border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   width: 100%;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
 .submit-btn:hover {
-  background-color: #2563eb;
-  transform: translateY(-1px);
+  background-color: #dc2626;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 15px rgba(220, 38, 38, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+}
+
+.submit-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  to {
+    left: 100%;
+  }
 }
 
 @media (max-width: 992px) {

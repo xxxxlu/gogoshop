@@ -7,12 +7,12 @@
             <div class="checkmark"></div>
           </div>
         </div>
-        <h1>Thank You for Your Order!</h1>
-        <p class="order-number">Order #{{ orderId }}</p>
+        <h1>Thank You for Your Order! <span class="heart-icon">❤️</span></h1>
+        <p class="order-number">Order #{{ orderId }} <span class="sparkle">✨</span></p>
 
         <div class="success-message">
-          <p>Your order has been placed successfully and is being processed.</p>
-          <p>A confirmation email has been sent to <strong>{{ customerInfo.email }}</strong>.</p>
+          <p>Your order has been placed successfully and is being processed. <span class="emoji">🎉</span></p>
+          <p>A confirmation email has been sent to <strong>{{ customerInfo.email }}</strong>. <span class="emoji">📧</span></p>
         </div>
 
         <div class="order-details">
@@ -77,8 +77,8 @@
         </div>
 
         <div class="actions">
-          <router-link to="/" class="continue-btn">Continue Shopping</router-link>
-          <button class="print-btn" @click="printOrder">Print Receipt</button>
+          <router-link to="/" class="continue-btn">Continue Shopping <span class="shop-icon">🛍️</span></router-link>
+          <button class="print-btn" @click="printOrder">Print Receipt <span class="print-icon">🖨️</span></button>
         </div>
       </div>
     </div>
@@ -151,16 +151,23 @@ export default {
 <style scoped>
 .checkout-success {
   padding: 48px 0;
-  background-color: #f8fafc;
+  background-color: #fff5f5;
 }
 
 .success-card {
   background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.15);
   padding: 48px;
   max-width: 900px;
   margin: 0 auto;
+  border: 1px solid #fecaca;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .success-icon {
@@ -171,12 +178,19 @@ export default {
 .checkmark-circle {
   width: 80px;
   height: 80px;
-  background-color: #4caf50;
+  background-color: #ef4444;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }
 
 .checkmark {
@@ -189,16 +203,54 @@ export default {
 
 h1 {
   text-align: center;
-  color: #1e293b;
+  color: #dc2626;
   font-size: 32px;
   margin-bottom: 24px;
+  font-weight: bold;
+}
+
+.heart-icon {
+  display: inline-block;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: scale(1) rotate(-10deg); }
+  to { transform: scale(1.3) rotate(10deg); }
+}
+
+.sparkle {
+  display: inline-block;
+  animation: twinkle 1.2s infinite;
+}
+
+@keyframes twinkle {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.emoji {
+  display: inline-block;
+  margin-left: 5px;
+  transform-origin: center;
+  animation: wiggle 2s infinite;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .order-number {
   text-align: center;
   font-size: 18px;
-  color: #475569;
+  color: #ef4444;
   margin-bottom: 32px;
+  font-weight: 600;
 }
 
 .success-message {
@@ -216,8 +268,15 @@ h1 {
   font-size: 24px;
   margin-bottom: 24px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #e2e8f0;
-  color: #1e293b;
+  border-bottom: 2px solid #fecaca;
+  color: #dc2626;
+  position: relative;
+}
+
+.order-details h2::after {
+  content: '✨';
+  position: absolute;
+  right: 0;
 }
 
 .details-section {
@@ -227,7 +286,9 @@ h1 {
 .details-section h3 {
   font-size: 20px;
   margin-bottom: 16px;
-  color: #334155;
+  color: #ef4444;
+  padding-left: 10px;
+  border-left: 3px solid #fecaca;
 }
 
 .info-item {
@@ -239,7 +300,7 @@ h1 {
   font-weight: 600;
   width: 140px;
   flex-shrink: 0;
-  color: #1e293b;
+  color: #991b1b;
 }
 
 .summary-items {
@@ -250,8 +311,15 @@ h1 {
   display: flex;
   justify-content: space-between;
   margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f1f5f9;
+  padding: 10px 15px;
+  border-bottom: 1px solid #fecaca;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.summary-item:hover {
+  background-color: #fff5f5;
+  transform: translateX(5px);
 }
 
 .summary-totals {
@@ -269,7 +337,8 @@ h1 {
   font-weight: 700;
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 2px dashed #fecaca;
+  color: #dc2626;
 }
 
 .actions {
@@ -280,30 +349,54 @@ h1 {
 
 .continue-btn, .print-btn {
   padding: 14px 28px;
-  border-radius: 8px;
+  border-radius: 30px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(220, 38, 38, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.shop-icon, .print-icon {
+  display: inline-block;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
 }
 
 .continue-btn {
-  background-color: #3b82f6;
+  background-color: #ef4444;
   color: white;
 }
 
 .print-btn {
-  background-color: #f1f5f9;
-  color: #1e293b;
-  border: 1px solid #e2e8f0;
+  background-color: #fff5f5;
+  color: #dc2626;
+  border: 1px solid #fecaca;
 }
 
 .continue-btn:hover {
-  background-color: #2563eb;
+  background-color: #dc2626;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 10px rgba(220, 38, 38, 0.3);
 }
 
 .print-btn:hover {
-  background-color: #e2e8f0;
+  background-color: #fecaca;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 10px rgba(220, 38, 38, 0.2);
+}
+
+.continue-btn:active, .print-btn:active {
+  transform: translateY(1px);
 }
 
 @media (max-width: 768px) {
