@@ -4,7 +4,7 @@
     <div class="hero-banner">
       <div class="container">
         <div class="hero-content">
-          <h1>Welcome to ABC Shop <span class="heart-icon">❤️</span></h1>
+          <h1>Welcome to GOGO Shop <span class="heart-icon">❤️</span></h1>
           <p>Discover amazing products at great prices</p>
           <router-link to="/products" class="shop-now-btn">Shop Now <span class="emoji">🛍️</span></router-link>
         </div>
@@ -51,7 +51,7 @@
         <div class="feature">
           <div class="feature-icon">🚚</div>
           <h3>Fast Shipping</h3>
-          <p>Free shipping on all orders over $50</p>
+          <p>Free shipping on all orders over Rs.50</p>
         </div>
         <div class="feature">
           <div class="feature-icon">🔄</div>
